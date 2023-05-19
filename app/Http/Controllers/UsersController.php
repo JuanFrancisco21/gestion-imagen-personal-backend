@@ -319,6 +319,30 @@ class UsersController extends Controller
         ], 404);
     }
 
+    /** */
+
+
+    public function getstudentsByCycle(Request $request)
+    {
+       $cycle = $request->cycle;
+       $users = User::where('cycle', $cycle)->where('rol', 2)->get();
+       if (count($users) !== 0) {
+            return response()->json([
+                'status' => 1,
+                'message' => 'GET USER BY CYCLE '.$cycle,
+                "data"=>$users
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => 1,
+            'message' => 'EMPTY',
+        ], 404);
+    }
+
+
+
+
     /**
      * Display a user based on their cycle.
      *

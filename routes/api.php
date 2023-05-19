@@ -59,7 +59,7 @@ Route::middleware('auth:sanctum')->delete('/appointment/id',[App\Http\Controller
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
 /*  METODOS GET DE Client */
-Route::middleware('auth:sanctum')->get('/clients/paged',[App\Http\Controllers\ClientController::class, 'getClientPaged']); 
+Route::middleware('auth:sanctum')->get('/clients/paged',[App\Http\Controllers\ClientController::class, 'getClientPaged']);
 Route::middleware('auth:sanctum')->get('/clients',[App\Http\Controllers\ClientController::class, 'getClientAll']);
 Route::middleware('auth:sanctum')->get('/client/data',[App\Http\Controllers\ClientController::class, 'searchClient']);
 Route::middleware('auth:sanctum')->get('/client/id',[App\Http\Controllers\ClientController::class, 'searchClientByid']);
@@ -88,6 +88,7 @@ Route::middleware('auth:sanctum')->get('/user/id', [App\Http\Controllers\UsersCo
 Route::middleware('auth:sanctum')->get('/userbyemail', [App\Http\Controllers\UsersController::class, 'getUserByCorreo']);
 Route::middleware('auth:sanctum')->get('/userbydni', [App\Http\Controllers\UsersController::class, 'getUserBydni']);
 Route::middleware('auth:sanctum')->get('/user/student/name', [App\Http\Controllers\UsersController::class, 'getUserByname']);
+Route::middleware('auth:sanctum')->get('/user/getstudentbycycle', [App\Http\Controllers\UsersController::class, 'getAll']);
 Route::middleware('auth:sanctum')->get('/users/course', [App\Http\Controllers\UsersController::class, 'getUserByCourse']);
 Route::middleware('auth:sanctum')->get('/users/cycle', [App\Http\Controllers\UsersController::class, 'getUserBycycle']);
 
