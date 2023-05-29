@@ -73,9 +73,9 @@ class AppointmentController extends Controller
 
     // Paginar los resultados
     $appointments = $query->paginate(
-        $request->input('perpage', 10), 
-        ['*'], 
-        'page', 
+        $request->input('perpage', 10),
+        ['*'],
+        'page',
         $request->input('page', 1)
     );
 
@@ -339,4 +339,36 @@ class AppointmentController extends Controller
 
 
     }
+
+
+
+
+        /** */
+
+
+public function getappointmentsByCycle(Request $request)
+{
+    $cycle = $request->cycle;
+    $appointments = Appointment::whereIn('dni_student', function ($query) use ($cycle) {
+        $query->select('dni')
+            ->from('users')
+            ->where('cycle', $cycle);
+    })
+    ->where('rol', 2)
+    ->get();
+
+    if (count($appointments) !== 0) {
+        return response()->json([
+            'status' => 1,
+            'message' => 'GET APPOINTMENTS BY CYCLE '.$cycle,
+            'data' => $appointments
+        ], 200);
+    }
+
+    return response()->json([
+        'status' => 1,
+        'message' => 'EMPTY',
+    ], 404);
+}
+
 }
